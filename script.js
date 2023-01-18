@@ -4,6 +4,15 @@ let spd;
 
 
 function start() {
+    let wakeLock = null;
+    try {
+        wakeLock = navigator.wakeLock.request('screen').then(() => {
+            console.warn('Wake Lock is active!');
+        });
+    } catch (err) {
+        console.log(err);
+    }
+
     starttime = new Date()
     clock = document.getElementById("timer")
     spd = document.getElementById("speed")
